@@ -3,6 +3,7 @@ library ai_barcode_web;
 import 'dart:async';
 
 import 'package:ai_barcode_platform_interface/ai_barcode_platform_interface.dart';
+import 'package:ai_barcode_web/src/qr_code_scanner_web.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -35,13 +36,21 @@ class AiBarcodeScannerWebPlugin extends AiBarcodeScannerPlatform {
 //    });
   }
 
+//  @override
+//  Widget buildScannerView(BuildContext context) {
+//    Future.delayed(Duration(seconds: 2))
+//        .then((value) => onPlatformScannerViewCreated(0));
+//    return HtmlElementView(
+//      key: UniqueKey(),
+//      viewType: AiBarcodePlatform.viewIdOfScanner,
+//    );
+//  }
   @override
   Widget buildScannerView(BuildContext context) {
-    Future.delayed(Duration(seconds: 2))
-        .then((value) => onPlatformScannerViewCreated(0));
-    return HtmlElementView(
-      key: UniqueKey(),
-      viewType: AiBarcodePlatform.viewIdOfScanner,
+    return QrCodeCameraWeb(
+      qrCodeCallback: (String result) {
+        notifyResultListenerCallback(result);
+      },
     );
   }
 

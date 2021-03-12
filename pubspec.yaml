@@ -1,6 +1,6 @@
 name: ai_barcode_web
 description: A new Flutter package project.
-version: 1.0.0
+version: 2.0.0
 homepage: https://pdliuw.github.io/
 repository: https://github.com/pdliuw/ai_barcode
 
@@ -15,7 +15,7 @@ dependencies:
   # Support web plugin
   flutter_web_plugins:
     sdk: flutter
-  ai_barcode_platform_interface: ^2.0.0
+  ai_barcode_platform_interface: ^2.1.0
   # flutter create QRCode
   qr_flutter: ^3.2.0
 
