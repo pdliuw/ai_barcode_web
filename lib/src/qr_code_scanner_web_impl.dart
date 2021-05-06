@@ -23,18 +23,17 @@ dynamic _jsQR(d, w, h, o) {
 
 class QrCodeCameraWebImpl extends StatefulWidget {
   final void Function(String qrValue) qrCodeCallback;
-  final Widget child;
+  final Widget? child;
   final BoxFit fit;
-  final Widget Function(BuildContext context, Object error) onError;
+  final Widget Function(BuildContext context, Object error)? onError;
 
   QrCodeCameraWebImpl({
-    Key key,
-    @required this.qrCodeCallback,
+    Key? key,
+    required this.qrCodeCallback,
     this.child,
     this.fit = BoxFit.cover,
     this.onError,
-  })  : assert(qrCodeCallback != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   _QrCodeCameraWebImplState createState() => _QrCodeCameraWebImplState();
@@ -49,13 +48,13 @@ class _QrCodeCameraWebImplState extends State<QrCodeCameraWebImpl> {
   static const _HAVE_ENOUGH_DATA = 4;
 
   // Webcam widget to insert into the tree
-  Widget _videoWidget;
+  late Widget _videoWidget;
 
   // VideoElement
-  html.VideoElement _video;
-  html.CanvasElement _canvasElement;
-  html.CanvasRenderingContext2D _canvas;
-  html.MediaStream _stream;
+  late html.VideoElement _video;
+  late html.CanvasElement _canvasElement;
+  html.CanvasRenderingContext2D? _canvas;
+  html.MediaStream? _stream;
 
   @override
   void initState() {
@@ -87,7 +86,7 @@ class _QrCodeCameraWebImplState extends State<QrCodeCameraWebImpl> {
       _video.play();
     });
     _canvasElement = html.CanvasElement();
-    _canvas = _canvasElement.getContext("2d");
+    _canvas = _canvasElement.getContext("2d") as html.CanvasRenderingContext2D?;
     Future.delayed(Duration(milliseconds: 20), () {
       tick();
     });
@@ -102,24 +101,26 @@ class _QrCodeCameraWebImplState extends State<QrCodeCameraWebImpl> {
     if (_video.readyState == _HAVE_ENOUGH_DATA) {
       _canvasElement.width = _video.videoWidth;
       _canvasElement.height = _video.videoHeight;
-      _canvas.drawImage(_video, 0, 0);
-      var imageData = _canvas.getImageData(
+      _canvas?.drawImage(_video, 0, 0);
+      var imageData = _canvas?.getImageData(
         0,
         0,
-        _canvasElement.width,
-        _canvasElement.height,
+        _canvasElement.width ?? 0,
+        _canvasElement.height ?? 0,
       );
-      js.JsObject code = _jsQR(
-        imageData.data,
-        imageData.width,
-        imageData.height,
-        {
-          'inversionAttempts': 'dontInvert',
-        },
-      );
-      if (code != null) {
-        String value = code['data'];
-        this.widget.qrCodeCallback(value);
+      if (imageData is html.ImageData) {
+        js.JsObject? code = _jsQR(
+          imageData.data,
+          imageData.width,
+          imageData.height,
+          {
+            'inversionAttempts': 'dontInvert',
+          },
+        );
+        if (code != null) {
+          String value = code['data'];
+          this.widget.qrCodeCallback(value);
+        }
       }
     }
     Future.delayed(Duration(milliseconds: 10), () => tick());
@@ -147,7 +148,7 @@ class _QrCodeCameraWebImplState extends State<QrCodeCameraWebImpl> {
     _video.pause();
     Future.delayed(Duration(milliseconds: 1), () {
       try {
-        _stream?.getTracks()?.forEach((mt) {
+        _stream?.getTracks().forEach((mt) {
           mt.stop();
         });
       } catch (e) {
