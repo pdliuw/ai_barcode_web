@@ -71,7 +71,9 @@ class _QrCodeCameraWebImplState extends State<QrCodeCameraWebImpl> {
         key: UniqueKey(), viewType: 'webcamVideoElement$_uniqueKey');
 
     // Access the webcam stream
-    html.window.navigator.getUserMedia(video: {'facingMode': 'environment'})
+    html.window.navigator.mediaDevices?.getUserMedia({
+      'video': {'facingMode': 'environment'}
+    })
 //        .mediaDevices   //don't work rear camera
 //        .getUserMedia({
 //      'video': {
