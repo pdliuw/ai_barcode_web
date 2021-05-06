@@ -5,8 +5,7 @@
 // - https://kevinwilliams.dev/blog/taking-photos-with-flutter-web
 // - https://github.com/cozmo/jsQR
 import 'dart:async';
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
+import 'package:universal_html/html.dart' as html;
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:js' as js;
 import 'dart:ui' as ui;

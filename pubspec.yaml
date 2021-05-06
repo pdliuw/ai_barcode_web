@@ -20,6 +20,7 @@ dependencies:
       url: https://github.com/radvansky-tomas/ai_barcode_platform_interface.git
   # flutter create QRCode
   qr_flutter: ^4.0.0
+  universal_html: ^2.0.8
 
 dev_dependencies:
   flutter_test:
