@@ -70,22 +70,41 @@ class _QrCodeCameraWebImplState extends State<QrCodeCameraWebImpl> {
         key: UniqueKey(), viewType: 'webcamVideoElement$_uniqueKey');
 
     // Access the webcam stream
-    html.window.navigator.mediaDevices?.getUserMedia({
-      'video': {'facingMode': 'environment'}
-    })
+    try {
+      html.window.navigator.mediaDevices?.getUserMedia({
+        'video': {'facingMode': 'environment'}
+      }).then((html.MediaStream stream) {
+        _stream = stream;
+        _video.srcObject = stream;
+        _video.setAttribute('playsinline',
+            'true'); // required to tell iOS safari we don't want fullscreen
+        _video.play();
+      });
+    } catch (err) {
+      print(err);
+      //Fallback
+      try {
+        html.window.navigator
+            .getUserMedia(video: {'facingMode': 'environment'}).then(
+                (html.MediaStream stream) {
+          _stream = stream;
+          _video.srcObject = stream;
+          _video.setAttribute('playsinline',
+              'true'); // required to tell iOS safari we don't want fullscreen
+          _video.play();
+        });
+      } catch (e) {
+        print(e);
+      }
+    }
+
 //        .mediaDevices   //don't work rear camera
 //        .getUserMedia({
 //      'video': {
 //        'facingMode': 'environment',
 //      }
 //    })
-        .then((html.MediaStream stream) {
-      _stream = stream;
-      _video.srcObject = stream;
-      _video.setAttribute('playsinline',
-          'true'); // required to tell iOS safari we don't want fullscreen
-      _video.play();
-    });
+
     _canvasElement = html.CanvasElement();
     _canvas = _canvasElement.getContext("2d") as html.CanvasRenderingContext2D?;
     Future.delayed(Duration(milliseconds: 20), () {
