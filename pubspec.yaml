@@ -15,9 +15,7 @@ dependencies:
   # Support web plugin
   flutter_web_plugins:
     sdk: flutter
-  ai_barcode_platform_interface:
-    git:
-      url: https://github.com/radvansky-tomas/ai_barcode_platform_interface.git
+  ai_barcode_platform_interface: ^3.0.0
   # flutter create QRCode
   qr_flutter: ^4.0.0
   universal_html: ^2.0.8
