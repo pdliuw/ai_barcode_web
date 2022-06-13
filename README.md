@@ -1,14 +1,12 @@
 # ai_barcode_web
 
-A new Flutter package project.
 
-## Getting Started
+support "ai_barcode" plugin web platform,
+see more [ai_barcode](https://github.com/pdliuw/ai_barcode)
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+ 
+
+| Plugin | Pub | Points | Popularity | Likes |
+|-----|-----|--------|------------|-------|
+|[ai_barcode](https://github.com/pdliuw/ai_barcode)|[![pub package](https://img.shields.io/pub/v/ai_barcode.svg)](https://pub.dev/packages/ai_barcode)|[![pub points](https://badges.bar/ai_barcode/pub%20points)](https://pub.dev/packages/ai_barcode/score)|[![popularity](https://badges.bar/ai_barcode/popularity)](https://pub.dev/packages/ai_barcode/score)|[![likes](https://badges.bar/ai_barcode/likes)](https://pub.dev/packages/ai_barcode/score)|
