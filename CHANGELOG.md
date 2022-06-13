@@ -1,3 +1,7 @@
+## [3.0.1]
+
+* improve something
+
 ## [3.0.0]
 
 * null safety
