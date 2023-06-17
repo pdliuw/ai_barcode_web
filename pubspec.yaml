@@ -1,12 +1,12 @@
 name: ai_barcode_web
 description: scan barcode and create barcode 's plugin interface from 'ai_barcode' plugin.
-version: 3.0.1
+version: 3.0.2
 homepage: https://pdliuw.github.io/
 repository: https://github.com/pdliuw/ai_barcode
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
-  flutter: ">=2.5.0"
+  sdk: '>=2.19.6 <4.0.0'
+  flutter: ">=3.7.0"
 
 dependencies:
   flutter:
@@ -17,8 +17,8 @@ dependencies:
     sdk: flutter
   ai_barcode_platform_interface: ^3.0.1
   # flutter create QRCode
-  qr_flutter: ^4.0.0
-  universal_html: ^2.0.8
+  qr_flutter: ^4.1.0
+  universal_html: ^2.2.3
 
 dev_dependencies:
   flutter_test:
