@@ -1,3 +1,7 @@
+## [3.0.2]
+
+* adapter flutter v3.7.12
+
 ## [3.0.1]
 
 * improve something
